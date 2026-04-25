@@ -8,18 +8,12 @@ public class Simulador {
     private Pila<Cliente> historicoAtenciones;
     private int clientesAtendidos;
 
-    /**
-     * Constructor del Simulador
-     */
     public Simulador() {
         this.colaClientes = new Cola<>();
         this.historicoAtenciones = new Pila<>();
         this.clientesAtendidos = 0;
     }
 
-    /**
-     * Carga los clientes desde el archivo clientes.txt
-     */
     public void cargarClientes() {
         try (BufferedReader br = new BufferedReader(new FileReader("data/clientes.txt"))) {
             String linea;
@@ -90,18 +84,11 @@ public class Simulador {
         }
     }
 
-    /**
-     * Atiende a todos los clientes automáticamente
-     */
     public void atenderTodos() {
         if (colaClientes.estaVacia()) {
-            System.out.println("\n✗ No hay clientes en la cola\n");
+            System.out.println("No hay clientes en la cola.");
             return;
         }
-
-        System.out.println("\n╔════════════════════════════════════╗");
-        System.out.println("║   ATENDIENDO A TODOS LOS CLIENTES   ║");
-        System.out.println("╚════════════════════════════════════╝\n");
 
         while (!colaClientes.estaVacia()) {
             try {
@@ -121,16 +108,13 @@ public class Simulador {
                 Thread.currentThread().interrupt();
                 break;
             } catch (Exception e) {
-                System.out.println("✗ Error: " + e.getMessage());
+                System.out.println("Error: " + e.getMessage());
             }
         }
         
-        System.out.println("\n✓ Se atendieron " + clientesAtendidos + " clientes en total\n");
+        System.out.println("Atendidos: " + clientesAtendidos);
     }
 
-    /**
-     * Consulta el último cliente atendido
-     */
     public void consultarUltimoAtendido() {
         if (historicoAtenciones.estaVacia()) {
             System.out.println("No hay clientes atendidos aún.");
@@ -146,9 +130,6 @@ public class Simulador {
         }
     }
 
-    /**
-     * Muestra el historial completo de atenciones (pila)
-     */
     public void mostrarHistorial() {
         if (historicoAtenciones.estaVacia()) {
             System.out.println("No hay clientes atendidos aún.");
@@ -159,9 +140,6 @@ public class Simulador {
         System.out.println(historicoAtenciones);
     }
 
-    /**
-     * Muestra la cola actual de clientes
-     */
     public void mostrarCola() {
         if (colaClientes.estaVacia()) {
             System.out.println("No hay clientes en la cola.");
@@ -172,9 +150,6 @@ public class Simulador {
         System.out.println(colaClientes);
     }
 
-    /**
-     * Muestra estadísticas del sistema
-     */
     public void mostrarEstadisticas() {
         System.out.println("Estadísticas:");
         System.out.println("Clientes en cola: " + colaClientes.getTamaño());
@@ -182,9 +157,6 @@ public class Simulador {
         System.out.println("Total procesados: " + (colaClientes.getTamaño() + clientesAtendidos));
     }
 
-    /**
-     * Inicia el simulador con menú interactivo
-     */
     public void iniciar() {
         Scanner scanner = new Scanner(System.in);
 
@@ -214,7 +186,7 @@ public class Simulador {
                         agregarClienteManual();
                         break;
                     case 3:
-                        consultarUltimoAtendido();
+                        atenderSiguiente();
                         break;
                     case 4:
                         mostrarCola();
@@ -240,9 +212,6 @@ public class Simulador {
         scanner.close();
     }
 
-    /**
-     * Método principal
-     */
     public static void main(String[] args) {
         Simulador simulador = new Simulador();
         simulador.iniciar();
