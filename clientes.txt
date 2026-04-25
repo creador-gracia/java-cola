@@ -1,0 +1,11 @@
+ID,Nombre,Servicio
+001,María López,Ventas
+002,Juan Pérez,Soporte
+003,Ana García,Ventas
+004,Pedro Rodríguez,Soporte
+005,Laura Martínez,Ventas
+006,Carlos Sánchez,Soporte
+007,Sofía Rodríguez,Ventas
+008,Luis Hernández,Soporte
+009,María Rodríguez,Ventas
+010,Juan Rodríguez,Soporte
