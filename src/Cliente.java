@@ -28,9 +28,6 @@ public class Cliente {
         return id;
     }
 
-    /**
-     * Obtiene el nombre del cliente
-     */
     public String getNombre() {
         return nombre;
     }
@@ -57,7 +54,7 @@ public class Cliente {
     }
 
     /**
-     * Establece la hora de finalización (cuando termina)
+     * Establece la hora de finalización
      */
     public void setHoraFinalizacion() {
         this.horaFinalizacion = System.currentTimeMillis();
